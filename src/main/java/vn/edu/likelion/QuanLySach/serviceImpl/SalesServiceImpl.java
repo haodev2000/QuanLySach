@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import jakarta.transaction.Transactional;
 import vn.edu.likelion.QuanLySach.dto.SalesDTO;
 import vn.edu.likelion.QuanLySach.entity.BookEntity;
 import vn.edu.likelion.QuanLySach.entity.EntityMapper;
@@ -16,6 +17,7 @@ import vn.edu.likelion.QuanLySach.repository.SaleRepository;
 import vn.edu.likelion.QuanLySach.service.SalesService;
 
 @Service
+@Transactional
 public class SalesServiceImpl implements SalesService{
 	
 	@Autowired

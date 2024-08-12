@@ -2,6 +2,7 @@ package vn.edu.likelion.QuanLySach.controller;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import vn.edu.likelion.QuanLySach.dto.BestSellingBookDTO;
 import vn.edu.likelion.QuanLySach.dto.BookDTO;
+import vn.edu.likelion.QuanLySach.dto.repo.IBookTopSale;
 import vn.edu.likelion.QuanLySach.service.BookService;
 
 @RestController
@@ -87,7 +89,7 @@ public class BookController {
 	    }
 	    
 	    @GetMapping("/top5")
-	    public List<BestSellingBookDTO> getTop5BestSellingBooks() {
+	    public List<IBookTopSale> getTop5BestSellingBooks() {
 	        return bookService.getTop5BestSellingBooks();
 	    }
 }

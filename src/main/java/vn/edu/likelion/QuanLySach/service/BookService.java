@@ -2,9 +2,11 @@ package vn.edu.likelion.QuanLySach.service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import vn.edu.likelion.QuanLySach.dto.BestSellingBookDTO;
 import vn.edu.likelion.QuanLySach.dto.BookDTO;
+import vn.edu.likelion.QuanLySach.dto.repo.IBookTopSale;
 
 public interface BookService {
 	
@@ -28,5 +30,5 @@ public interface BookService {
 
     List<BookDTO> findByDateAddedBetween(Date startDate, Date endDate);
     
-    List<BestSellingBookDTO> getTop5BestSellingBooks();
+    List<IBookTopSale> getTop5BestSellingBooks();
 }

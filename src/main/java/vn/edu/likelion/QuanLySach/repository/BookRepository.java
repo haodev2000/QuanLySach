@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import vn.edu.likelion.QuanLySach.dto.BestSellingBookDTO;
+import vn.edu.likelion.QuanLySach.dto.repo.IBookTopSale;
 import vn.edu.likelion.QuanLySach.entity.BookEntity;
 
 @Repository
@@ -20,15 +21,15 @@ public interface BookRepository extends JpaRepository<BookEntity, Integer> {
 	 
 	 @Query(value = "SELECT *"
 	 		+ "FROM ("
-	 		+ "    SELECT b.id, b.name, COALESCE(COUNT(s.id), 0) AS sales_count"
+	 		+ "    SELECT b.id, b.name, COUNT(s.id) AS salesCount"
 	 		+ "    FROM Book b "
 	 		+ "    LEFT JOIN Sales s "
 	 		+ "    ON b.id = s.book_id "
-	 		+ "    GROUP BY b.id, b.name "
-	 		+ "    ORDER BY sales_count DESC "
+	 		+ "    GROUP BY b.id, b. name "
+	 		+ "    ORDER BY salesCount DESC "
 	 		+ ")"
 	 		+ "WHERE ROWNUM <= 5" , nativeQuery = true)
-	 List<Object[]> findTop5BestSellingBooks();
+	 List<IBookTopSale> findTop5BestSellingBooks();
 	 
 	 List<BookEntity> findByIdOrName(Integer id, String name);
 	 

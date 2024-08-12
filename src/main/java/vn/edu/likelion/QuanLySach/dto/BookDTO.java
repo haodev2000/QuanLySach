@@ -17,7 +17,7 @@ import lombok.Data;
 
     private Date dateAdded;
 
-    private List<SalesDTO> sales;	
+//    private List<SalesDTO> sales;	
 
 	public BookDTO() {
 		super();

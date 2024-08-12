@@ -10,7 +10,7 @@ public class SalesDTO {
 	
 	    private int id;
 
-	    private int book;
+	    private BookDTO book;
 
 	    private Date dateSale;
 

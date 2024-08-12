@@ -4,7 +4,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -13,15 +15,19 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Service;
 
+import jakarta.transaction.Transactional;
 import vn.edu.likelion.QuanLySach.dto.BestSellingBookDTO;
 import vn.edu.likelion.QuanLySach.dto.BookDTO;
+import vn.edu.likelion.QuanLySach.dto.repo.IBookTopSale;
 import vn.edu.likelion.QuanLySach.entity.BookEntity;
+import vn.edu.likelion.QuanLySach.entity.SalesEntity;
 import vn.edu.likelion.QuanLySach.repository.BookRepository;
 import vn.edu.likelion.QuanLySach.repository.SaleRepository;
 import vn.edu.likelion.QuanLySach.service.BookService;
 import vn.edu.likelion.QuanLySach.service.SalesService;
 
 @Service
+@Transactional
 public class BookServiceImpl implements BookService {
 	
 	@Autowired
@@ -155,15 +161,10 @@ public class BookServiceImpl implements BookService {
 		    }
 		 
 		 @Override
-		 public List<BestSellingBookDTO> getTop5BestSellingBooks() {
-		     List<Object[]> results = bookRepository.findTop5BestSellingBooks();
-		     return results.stream()
-		             .map(result -> new BestSellingBookDTO(
-		                     ((Number) result[0]).intValue(),
-		                     (String) result[1],
-		                     ((Number) result[2]).longValue()
-		             ))
-		             .collect(Collectors.toList());
+		 public List<IBookTopSale>  getTop5BestSellingBooks() {
+		     List<IBookTopSale> results = bookRepository.findTop5BestSellingBooks();
+
+		     return results;
 		 }
 
 

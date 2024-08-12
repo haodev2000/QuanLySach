@@ -2,6 +2,8 @@ package vn.edu.likelion.QuanLySach.entity;
 
 
 
+import java.awt.print.Book;
+
 import vn.edu.likelion.QuanLySach.dto.BookDTO;
 import vn.edu.likelion.QuanLySach.dto.SalesDTO;
 import vn.edu.likelion.QuanLySach.dto.UserDTO;
@@ -19,9 +21,20 @@ public class EntityMapper {
     }
 
     public static SalesDTO toSalesDTO(SalesEntity sale) {
-        SalesDTO salesDTO = new SalesDTO();   
+        SalesDTO salesDTO = new SalesDTO(); 
+        
+        BookDTO bookDTO = new BookDTO();
+        BookEntity b = sale.getBook();
+        
+        bookDTO.setId(b.getId());
+        bookDTO.setName(b.getName());
+        bookDTO.setPrice(b.getPrice());
+        bookDTO.setQuantity(b.getQuantity());
+        bookDTO.setDateAdded(b.getDateAdded());
+        
+        
         salesDTO.setId(sale.getId());
-        salesDTO.setBook(sale.getBook().getId());
+        salesDTO.setBook(bookDTO);
         salesDTO.setDateSale(sale.getDateSale());
         return salesDTO;
     }
